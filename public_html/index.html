@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head id="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Theo Fleck">
+    <meta name="description" content="A fun word game built with Node.JS and Docker for CPEG470">
+    <title>Text Twist</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha256-CjSoeELFOcH0/uxWu6mC/Vlrc1AARqbm/jiiImDGV3s=" crossorigin="anonymous"></script> 
+    <script src="main.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-dark bg-dark" id="topNav">
+        <div class="col-lg-4 offset-lg-4" id="title">
+          <h1>Text Twist</h1>
+        </div>
+      </nav>
+    </header>
+    <main role="main" id="container">
+      <br><br>
+      <h3 id="introMsg">Loading game...</h3>
+      <br>
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 col-10">
+          <table class="table table-bordered">
+            <thead>
+              <tr id="letterNumHeaders">
+              </tr>
+            </thead>
+            <tbody id="wordTableBody">
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <br>
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-6 col-10">
+          <input type="text" class="form-control" id="letterInput" minLength="3" maxLength="32" required>
+        </div>
+      </div>
+      <br>
+      <div class="row d-flex justify-content-center text-center"> 
+        <div class="col-lg-6 col-10">
+          <div class="btn-group d-flex" id="letterBank"></div>
+        </div>
+      </div>
+      <br><br>
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-6 col-10">
+          <button type="button" class="btn btn-primary btn-wide" id="twistBtn">Twist!</button>
+          <button type="button" class="btn btn-secondary btn-wide" id="lastBtn">Last</button>
+          <button type="button" class="btn btn-secondary btn-wide" id="clearBtn">Clear</button>
+          <button type="button" class="btn btn-success btn-wide" id="enterBtn" disabled>Enter</button>
+        </div>
+      </div>
+      <br><br>
+      <div class="row d-flex justify-content-center text-center">
+        <div class="col-lg-4 col-8">
+          <button type="button" class="btn btn-info btn-block" id="newGameBtn">New Game</button>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <p>
+        Copyright &copy;
+        <script type="text/JavaScript">document.write(new Date().getFullYear());</script>
+        <a href='https://theofleck.com' target="_blank">Theo Fleck</a>, All Rights Reserved
+      </p>
+    </footer>
+  </body>
+</html>

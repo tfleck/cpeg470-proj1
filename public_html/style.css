@@ -1,0 +1,114 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-size: 16px;
+}
+
+nav {
+  color: white;
+}
+
+main {
+  width: 98%;
+  flex: 1 0 auto;
+}
+
+@media only screen and (max-width:768px) {
+  main {
+    width: 100%;
+  }
+}
+
+section {
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, .2)
+}
+
+hr {
+    max-width: 250px;
+    border-top: solid 5px;
+    margin: 25px auto 30px;
+    color: #fff
+}
+h1 {
+    text-align: center
+}
+
+h3 {
+    text-align: center;
+}
+
+a {
+    color: #2597f4
+}
+
+a:hover {
+    color: #2597f4
+}
+
+p {
+    font-size: 1.1em
+}
+
+th {
+  text-align:center;
+}
+
+td {
+    max-width: 50%;
+    text-align:center;
+}
+
+footer {
+  color: #fff;
+  background-color: #343a40;
+  flex-shrink: 0;
+  margin-top: 75px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+footer p {
+  text-align: center;
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.navbar-brand {
+    font-size: 35px
+}
+
+.navbar-dark .navbar-nav li .nav-link,
+.navbar-brand {
+    color: #fff;
+    transition: all ease .3s
+}
+
+.navbar-dark .navbar-nav .nav-link.active {
+    background-color: #2597f4;
+    transition: all ease .3s
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #2597f4;
+    transition: all ease .3s
+}
+
+.navbar-dark .navbar-nav .nav-link.active:hover {
+    color: #fff;
+    background-color: #2597f4
+}
+
+.btn-wide {
+  min-width: 20%;
+}
+
+@media screen and (max-width:992px) {
+    body {
+        font-size: 14px
+    }
+    #aboutme p {
+        margin-bottom: 12px
+    }
+}
