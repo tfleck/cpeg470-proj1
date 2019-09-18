@@ -33,7 +33,7 @@ app.get('/main.js', function(request, response) {
 
 app.get('/api/randomword', function(request, response) {
   let rand = Math.floor(Math.random()*wordList.length)
-  while(wordList[rand].length < 6){
+  while(wordList[rand].length < 6 || wordList[rand].length > 10){
     rand = Math.floor(Math.random()*wordList.length)
   }
   response.send(wordList[rand].trim())

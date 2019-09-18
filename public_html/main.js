@@ -1,5 +1,6 @@
 var currentWord = ""
 var answerWords = []
+var numEnteredWords = 0
 var lastEnteredWord = ""
 
 jQuery( document ).ready( function( $ ) {
@@ -41,7 +42,7 @@ jQuery( document ).ready( function( $ ) {
     $('#letterInput').removeClass( 'is-invalid' )
     $( '#enterBtn' ).prop( 'disabled', true )
     $( '#letterInput' ).val( '' )
-    let letterBtns = document.querySelector('#letterBank');
+    let letterBtns = document.querySelector('#letterBank')
     for (let i = 0; i < letterBtns.children.length; i++) {
       letterBtns.children[i].style.display = 'block'
     }
@@ -92,7 +93,18 @@ jQuery( document ).ready( function( $ ) {
     lastEnteredWord = test_word
     $( '#letterInput' ).val( '' )
     if(answerWords.includes(test_word)){
-      $( '#table'+test_word ).html(test_word)
+      $( '#table'+test_word ).fadeOut( 150, function(){
+        $( '#table'+test_word ).html( test_word )
+        numEnteredWords++
+        $( '#table'+test_word ).fadeIn( 250, function() {
+          if(numEnteredWords == answerWords.length){
+            $( '#introMsg' ).fadeOut( 150, function(){
+              $( '#introMsg' ).html('You Win!!')
+              $( '#introMsg' ).fadeIn( 250 )
+            })
+          }
+        })
+      })  
       $('#letterInput').addClass( 'is-valid' )
     }
     else{
@@ -107,13 +119,15 @@ jQuery( document ).ready( function( $ ) {
   $( '#newGameBtn' ).click( function( event )
   {
     $('#introMsg').html('Loading game...')
-    $( '#letterNumHeaders' ).html('')
-    $( '#wordTableBody' ).html('')
-    $( '#letterBank' ).html('')
-    getWordAndSubs()
+    $( '#wordTable' ).fadeOut( 300, function(){
+      getWordAndSubs()
+    })
   })
   
-  getWordAndSubs()
+  //Start game
+  $( '#wordTable' ).fadeOut( 10, function(){
+    getWordAndSubs()
+  })
 })
 
 function getWordAndSubs(){
@@ -123,7 +137,7 @@ function getWordAndSubs(){
     $.get( '/api/getwords?word='+currentWord, function( data )
     {
       answerWords = data
-      if(answerWords.length > 100){
+      if(answerWords.length > 50){
         getWordAndSubs()
       }
       else{
@@ -137,15 +151,17 @@ function getWordAndSubs(){
           `) 
         })
         populateWordTable()
+        $( '#wordTable' ).fadeIn( 500 )
         $('#introMsg').html('Find all of the subwords!')
         setLetterListener()
         $( '#twistBtn' ).click()
+        
       }
     })
   })
 }
   
-function populateWordTable(){
+function populateWordTable(){ 
   $( '#letterNumHeaders' ).html('')
   $( '#wordTableBody' ).html('')
   let prevLen = 0
