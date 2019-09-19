@@ -167,18 +167,26 @@ function getWordAndSubs(){
 function populateWordTable(){ 
   $( '#letterNumHeaders' ).html('')
   $( '#wordTableBody' ).html('')
-  let prevLen = 0
+  let prevLen = 2
   let ind = 1
   answerWords.forEach( function( w ){
     if(w.length > prevLen){
       $( '#letterNumHeaders' ).append(`
-        <th scope="col">`+w.length+` Letters</th>
+        <th scope="col">`+w.length+` Chars</th>
       `)
       prevLen = w.length
       ind = 1
     }
     if( $( '#wordTableBody tr:nth-child('+ind+')').length > 0 ){
-      let newWordElem = '<td><div class="tableWord" id="table'+w+'">'
+      let newWordElem = ''
+      let numCells = ($( '#wordTableBody tr:nth-child('+ind+')')[0]).cells.length
+      for(let i=numCells; i < w.length-3; i++){
+        if( $( '#letterNumHeaders th:nth-child('+(i+1)+')' )[0].innerHTML.indexOf(i+3) >= 0 ){
+          newWordElem += '<td></td>'
+        }
+        
+      }
+      newWordElem += '<td><div class="tableWord" id="table'+w+'">'
       for(let i=0; i < w.length; i++)
       {
         newWordElem += '-'
