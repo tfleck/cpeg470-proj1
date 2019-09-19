@@ -93,18 +93,21 @@ jQuery( document ).ready( function( $ ) {
     lastEnteredWord = test_word
     $( '#letterInput' ).val( '' )
     if(answerWords.includes(test_word)){
-      $( '#table'+test_word ).fadeOut( 150, function(){
-        $( '#table'+test_word ).html( test_word )
-        numEnteredWords++
-        $( '#table'+test_word ).fadeIn( 250, function() {
-          if(numEnteredWords == answerWords.length){
-            $( '#introMsg' ).fadeOut( 150, function(){
-              $( '#introMsg' ).html('You Win!!')
-              $( '#introMsg' ).fadeIn( 250 )
-            })
-          }
-        })
-      })  
+      if($( '#table'+test_word ).html().indexOf('---') >= 0)
+      {
+        $( '#table'+test_word ).fadeOut( 150, function(){
+          $( '#table'+test_word ).html( test_word )
+          numEnteredWords++
+          $( '#table'+test_word ).fadeIn( 250, function() {
+            if(numEnteredWords == answerWords.length){
+              $( '#introMsg' ).fadeOut( 150, function(){
+                $( '#introMsg' ).html('You Win!!')
+                $( '#introMsg' ).fadeIn( 250 )
+              })
+            }
+          })
+        })  
+      }
       $('#letterInput').addClass( 'is-valid' )
     }
     else{
@@ -175,7 +178,7 @@ function populateWordTable(){
       ind = 1
     }
     if( $( '#wordTableBody tr:nth-child('+ind+')').length > 0 ){
-      let newWordElem = '<td><div id="table'+w+'">'
+      let newWordElem = '<td><div class="tableWord" id="table'+w+'">'
       for(let i=0; i < w.length; i++)
       {
         newWordElem += '-'
@@ -189,7 +192,7 @@ function populateWordTable(){
       {
         newWordElem += '<td></td>'
       }
-      newWordElem += '<td><div id="table'+w+'" class="word-cell">'
+      newWordElem += '<td><div class="tableWord" id="table'+w+'">'
       for(let i=0; i < w.length; i++)
       {
         newWordElem += '-'
@@ -198,7 +201,7 @@ function populateWordTable(){
       $( '#wordTableBody' ).append(newWordElem)
     }
     else{
-      let newWordElem = '<tr><td><div id="table'+w+'"">'
+      let newWordElem = '<tr><td><div class="tableWord" id="table'+w+'">'
       for(let i=0; i < w.length; i++)
       {
         newWordElem += '-'
@@ -208,6 +211,7 @@ function populateWordTable(){
     }
     ind++
   })
+  setTableWordListener()
 }
 
 function setLetterListener()
@@ -221,6 +225,23 @@ function setLetterListener()
     else{
       $( '#enterBtn' ).prop( 'disabled', true )
     }
+  })
+}
+
+function setTableWordListener()
+{
+  $( 'table .tableWord' ).click( function( event )
+  {
+    if(event.currentTarget.innerHTML.indexOf('---') < 0)
+    {
+      let clickedWord = event.currentTarget.id.substring(5)
+      $.get( '/api/getdefinition?word='+clickedWord, function( data )
+      {
+        $( '#definitionModalLabel' ).html( clickedWord )
+        $( '#definitionModalBody' ).html( data )
+        $( '#definitionModal' ).modal( 'toggle' )
+      })
+    }    
   })
 }
 
