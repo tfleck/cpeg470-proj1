@@ -1,12 +1,12 @@
 {
   "name": "470-proj1",
   "version": "1.0.0",
-  "description": "",
+  "description": "Text twist, a practice game for scrabble",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Theo Fleck",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
