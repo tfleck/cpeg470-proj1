@@ -33,7 +33,7 @@ jobs:
         # Server address of Docker registry. If not set then will default to Docker Hub
         #registry: # optional
         # Docker repository to tag the image with
-        repository: texttwist
+        repository: theofleck/texttwist
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: latest # optional
         # Automatically tags the built image with the git reference as per the readme
@@ -57,4 +57,4 @@ jobs:
         # Adds labels with git repository information to the built image
         #add_git_labels: # optional
         # Whether to push the image
-        #push: true # optional, default is true
+        #push: # optional, default is true
